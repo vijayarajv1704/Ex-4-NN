@@ -1,13 +1,12 @@
 
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
-<H3>EX. NO.4</H3>
-<H3>DATE:</H3>
-<H1 ALIGN =CENTER>Implementation of MLP with Backpropagation for Multiclassification</H1>
-<H3>Aim:</H3>
+## NAME : Vijayaraj V
+## REG.NO :212222230174
+## EX. NO.4
+## DATE 30.04.2025
+## Implementation of MLP with Backpropagation for Multiclassification>
+## Aim:
 To implement a Multilayer Perceptron for Multi classification
-<H3>Theory</H3>
-
+## Theory
 A multilayer perceptron (MLP) is a feedforward artificial neural network that generates a set of outputs from a set of inputs. An MLP is characterized by several layers of input nodes connected as a directed graph between the input and output layers. MLP uses back propagation for training the network. MLP is a deep learning method.
 A multilayer perceptron is a neural network connecting multiple layers in a directed graph, which means that the signal path through the nodes only goes one way. Each node, apart from the input nodes, has a nonlinear activation function. An MLP uses backpropagation as a supervised learning technique.
 MLP is widely used for solving problems that require supervised learning as well as research into computational neuroscience and parallel distributed processing. Applications include speech recognition, image recognition and machine translation.
@@ -95,7 +94,7 @@ In the backward pass,
 
 ![image](https://user-images.githubusercontent.com/112920679/198814362-05a251fd-fceb-43cd-867b-75e6339d870a.png)
 
-<H3>Algorithm:</H3>
+## Algorithm:
 
 1. Import the necessary libraries of python.
 
@@ -114,13 +113,37 @@ Normalize our dataset.
 
 8. Finally, call the functions confusion_matrix(), and the classification_report() in order to evaluate the performance of our classifier.
 
-<H3>Program:</H3> 
+## Program:
 
-Insert your code here
+  ```python
+    import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+arr = ['SepalLength','SepalWidth','PeatlLength','PetalWidth','Species']
+df = pd.read_csv('iris.csv')
+print(df.head())
+a = df.iloc[:,0:4]
+b = df.select_dtypes(include=[object])
+b = df.iloc[:,4:5]
+training_a,testing_a,training_b,testing_b = train_test_split(a,b,test_size=0.25)
+myscaler = StandardScaler()
+myscaler.fit(training_a)
+training_a = myscaler.transform(training_a)
+testing_a = myscaler.transform(testing_a)
+m1 = MLPClassifier(hidden_layer_sizes=(12,13,14),activation='relu',solver='adam',max_iter=2500)
+m1.fit(training_a,training_b.values.ravel())
+predicted_values = m1.predict(testing_a)
+print(confusion_matrix(testing_b,predicted_values))
+print(classification_report(testing_b,predicted_values))
+  ```
 
-<H3>Output:</H3>
+## Output:
 
-Show your results here
+![image](https://github.com/user-attachments/assets/a0a2bcbb-0a87-45d7-960b-991c3f10ac4c)
 
-<H3>Result:</H3>
+
+## Result:
 Thus, MLP is implemented for multi-classification using python.
